@@ -1,0 +1,3 @@
+data_source_url=jdbc:postgresql://localhost:5432/postgres
+database_login=postgres
+database_password=postgres
