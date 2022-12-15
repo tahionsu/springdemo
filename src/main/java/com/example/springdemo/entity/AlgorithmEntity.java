@@ -1,10 +1,8 @@
 package com.example.springdemo.entity;
 
-import lombok.Data;
 
 import javax.persistence.*;
 
-@Data
 @Entity
 @Table(name = "algorithms")
 public class AlgorithmEntity {
@@ -12,6 +10,20 @@ public class AlgorithmEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String modelName;
-    @ManyToOne
-    private ExperimentEntity experiment;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getModelName() {
+        return modelName;
+    }
+
+    public void setModelName(String modelName) {
+        this.modelName = modelName;
+    }
 }

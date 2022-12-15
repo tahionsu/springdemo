@@ -1,7 +1,7 @@
 package com.example.springdemo.controller;
 
 import com.example.springdemo.entity.AlgorithmEntity;
-import com.example.springdemo.service.AlgorithmService;
+import com.example.springdemo.repository.AlgoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,17 +10,16 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/algorithms")
 public class AlgorithmController {
 
-    private final AlgorithmService algorithmService;
+    private final AlgoRepository algoRepository;
 
-    public AlgorithmController(@Autowired AlgorithmService algorithmService) {
-        this.algorithmService = algorithmService;
+    public AlgorithmController(@Autowired AlgoRepository algoRepository) {
+        this.algoRepository = algoRepository;
     }
 
-    @GetMapping("/add")
-    @PostMapping
+    @PostMapping("/add")
     public ResponseEntity<?> registration(@RequestBody AlgorithmEntity algorithm) {
         try {
-            algorithmService.registration(algorithm);
+            algoRepository.save(algorithm);
             return ResponseEntity.ok("Successfully");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Error");
@@ -30,16 +29,16 @@ public class AlgorithmController {
     @GetMapping("/get")
     public ResponseEntity<?> getAllAlgorithms() {
         try {
-            return ResponseEntity.ok(algorithmService.getAll());
+            return ResponseEntity.ok(algoRepository.findAll());
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Error");
         }
     }
 
-    @GetMapping("/get")
+    @GetMapping("/get/")
     public ResponseEntity<?> getOneAlgorithm(@RequestParam Integer id) {
         try {
-            return ResponseEntity.ok(algorithmService.getAlgorithm(id));
+            return ResponseEntity.ok(algoRepository.findById(id));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Error");
         }
