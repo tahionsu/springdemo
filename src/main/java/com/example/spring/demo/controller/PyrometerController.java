@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@SuppressWarnings("unused")
 @RestController
 @RequestMapping("/spring/demo/pyrometers")
 public class PyrometerController {
@@ -35,10 +36,28 @@ public class PyrometerController {
         }
     }
 
-    @GetMapping("/get/")
-    public ResponseEntity<?> getOnePyrometer(@RequestParam Integer id) {
+    @GetMapping("/getById/")
+    public ResponseEntity<?> getOnePyrometerById(@RequestParam Integer id) {
         try {
             return ResponseEntity.ok(pyrometerRepository.findById(id));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @GetMapping("/getByName/")
+    public ResponseEntity<?> getOnePyrometerByName(@RequestParam String name) {
+        try {
+            return ResponseEntity.ok(pyrometerRepository.findByName(name));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @GetMapping("/getByPort/")
+    public ResponseEntity<?> getOnePyrometerByPort(@RequestParam String port) {
+        try {
+            return ResponseEntity.ok(pyrometerRepository.findByPort(port));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }

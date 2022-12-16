@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@SuppressWarnings("unused")
 @RestController
 @RequestMapping("/spring/demo/algorithms")
 public class AlgorithmController {
@@ -36,10 +37,19 @@ public class AlgorithmController {
         }
     }
 
-    @GetMapping("/get/")
-    public ResponseEntity<?> getOneAlgorithm(@RequestParam Integer id) {
+    @GetMapping("/getById/")
+    public ResponseEntity<?> getOneAlgorithmById(@RequestParam(name = "id") Integer id) {
         try {
             return ResponseEntity.ok(algoRepository.findById(id));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @GetMapping("/getByName/")
+    public ResponseEntity<?> getOneAlgorithmByName(@RequestParam(name = "name") String name) {
+        try {
+            return ResponseEntity.ok(algoRepository.findByModelName(name));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }

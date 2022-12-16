@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AlgorithmRepository extends CrudRepository<AlgorithmEntity, Integer> {
-    AlgorithmRepository findByModelName(String modelName);
+    AlgorithmEntity findByModelName(String modelName);
 }

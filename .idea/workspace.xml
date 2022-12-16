@@ -5,10 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cec5fa3d-16fc-47e0-8cfb-68b54266dfa7" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/spring/demo/entity/AlgorithmEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/spring/demo/entity/AlgorithmEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/spring/demo/entity/ExperimentEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/spring/demo/entity/ExperimentEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/spring/demo/entity/PyrometerEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/spring/demo/entity/PyrometerEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/spring/demo/controller/AlgorithmController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/spring/demo/controller/AlgorithmController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/spring/demo/controller/ExperimentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/spring/demo/controller/ExperimentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/spring/demo/controller/PyrometerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/spring/demo/controller/PyrometerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/spring/demo/repository/AlgorithmRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/spring/demo/repository/AlgorithmRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/spring/demo/repository/PyrometerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/spring/demo/repository/PyrometerRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

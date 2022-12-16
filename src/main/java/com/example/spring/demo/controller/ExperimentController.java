@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@SuppressWarnings("unused")
 @RestController
 @RequestMapping("/spring/demo/experiments")
 public class ExperimentController {
@@ -38,10 +39,19 @@ public class ExperimentController {
         }
     }
 
-    @GetMapping("/get/")
-    public ResponseEntity<?> getOneExperiment(@RequestParam Integer id) {
+    @GetMapping("/getById/")
+    public ResponseEntity<?> getOneExperimentById(@RequestParam Integer id) {
         try {
             return ResponseEntity.ok(experimentRepository.findById(id));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @GetMapping("/getByName/")
+    public ResponseEntity<?> getOneExperimentByName(@RequestParam String name) {
+        try {
+            return ResponseEntity.ok(experimentRepository.findByName(name));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
