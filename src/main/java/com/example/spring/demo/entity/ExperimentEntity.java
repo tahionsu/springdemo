@@ -1,11 +1,13 @@
 package com.example.spring.demo.entity;
 
+import lombok.Data;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 
 @Entity
+@Data
 @Table(name = "experiments")
 public class ExperimentEntity {
     @Id
@@ -21,55 +23,4 @@ public class ExperimentEntity {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private PyrometerEntity pyrometer;
 
-    public ExperimentEntity() {
-    }
-
-    public ExperimentEntity(Integer id, String name, AlgorithmEntity algorithm, PyrometerEntity pyrometer) {
-        this.id = id;
-        this.name = name;
-        this.algorithm = algorithm;
-        this.pyrometer = pyrometer;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public AlgorithmEntity getAlgorithm() {
-        return algorithm;
-    }
-
-    public void setAlgorithm(AlgorithmEntity algorithm) {
-        this.algorithm = algorithm;
-    }
-
-    public PyrometerEntity getPyrometer() {
-        return pyrometer;
-    }
-
-    public void setPyrometer(PyrometerEntity pyrometer) {
-        this.pyrometer = pyrometer;
-    }
-
-    @Override
-    public String toString() {
-        return "ExperimentEntity{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", algorithm=" + algorithm +
-                ", pyrometer=" + pyrometer +
-                '}';
-    }
 }
