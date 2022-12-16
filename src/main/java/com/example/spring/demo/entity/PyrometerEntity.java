@@ -1,4 +1,4 @@
-package com.example.springdemo.entity;
+package com.example.spring.demo.entity;
 
 
 import javax.persistence.*;
@@ -7,10 +7,19 @@ import javax.persistence.*;
 @Table(name = "pyrometers")
 public class PyrometerEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
     private String name;
     private String port;
+
+    public PyrometerEntity() {
+    }
+
+    public PyrometerEntity(Integer id, String name, String port) {
+        this.id = id;
+        this.name = name;
+        this.port = port;
+    }
 
     public Integer getId() {
         return id;

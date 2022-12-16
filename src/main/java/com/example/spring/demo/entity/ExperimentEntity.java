@@ -1,6 +1,5 @@
-package com.example.springdemo.entity;
+package com.example.spring.demo.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -10,22 +9,19 @@ import javax.persistence.*;
 @Table(name = "experiments")
 public class ExperimentEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
     private String name;
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "algorithm_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
     private AlgorithmEntity algorithm;
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "pyrometer_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
     private PyrometerEntity pyrometer;
 
     public ExperimentEntity() {
-
     }
 
     public ExperimentEntity(Integer id, String name, AlgorithmEntity algorithm, PyrometerEntity pyrometer) {
@@ -65,5 +61,15 @@ public class ExperimentEntity {
 
     public void setPyrometer(PyrometerEntity pyrometer) {
         this.pyrometer = pyrometer;
+    }
+
+    @Override
+    public String toString() {
+        return "ExperimentEntity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", algorithm=" + algorithm +
+                ", pyrometer=" + pyrometer +
+                '}';
     }
 }

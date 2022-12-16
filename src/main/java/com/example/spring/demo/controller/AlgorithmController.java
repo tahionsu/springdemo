@@ -1,18 +1,18 @@
-package com.example.springdemo.controller;
+package com.example.spring.demo.controller;
 
-import com.example.springdemo.entity.AlgorithmEntity;
-import com.example.springdemo.repository.AlgoRepository;
+import com.example.spring.demo.entity.AlgorithmEntity;
+import com.example.spring.demo.repository.AlgorithmRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/algorithms")
+@RequestMapping("/spring/demo/algorithms")
 public class AlgorithmController {
 
-    private final AlgoRepository algoRepository;
+    private final AlgorithmRepository algoRepository;
 
-    public AlgorithmController(@Autowired AlgoRepository algoRepository) {
+    public AlgorithmController(@Autowired AlgorithmRepository algoRepository) {
         this.algoRepository = algoRepository;
     }
 
@@ -22,7 +22,7 @@ public class AlgorithmController {
             algoRepository.save(algorithm);
             return ResponseEntity.ok("Successfully");
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Error");
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
@@ -31,7 +31,7 @@ public class AlgorithmController {
         try {
             return ResponseEntity.ok(algoRepository.findAll());
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Error");
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
@@ -40,7 +40,17 @@ public class AlgorithmController {
         try {
             return ResponseEntity.ok(algoRepository.findById(id));
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Error");
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @DeleteMapping("/del/")
+    public ResponseEntity<?> deleteAlgorithm(@RequestParam Integer id) {
+        try {
+            algoRepository.deleteById(id);
+            return ResponseEntity.ok(id);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 

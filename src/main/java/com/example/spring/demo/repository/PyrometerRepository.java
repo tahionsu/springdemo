@@ -1,6 +1,6 @@
-package com.example.springdemo.repository;
+package com.example.spring.demo.repository;
 
-import com.example.springdemo.entity.PyrometerEntity;
+import com.example.spring.demo.entity.PyrometerEntity;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

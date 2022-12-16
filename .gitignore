@@ -1,6 +1,5 @@
 HELP.md
 target/
-!.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
 
@@ -18,6 +17,8 @@ target/
 *.iws
 *.iml
 *.ipr
+application-local.prorepties
+.mvn
 
 ### NetBeans ###
 /nbproject/private/
@@ -31,3 +32,9 @@ build/
 
 ### VS Code ###
 .vscode/
+!/src/main/resources/application-local.properties
+!/.mvn/
+!/.idea/
+!/src/main/resources/application-local.properties
+!/.mvn/
+!/.idea/

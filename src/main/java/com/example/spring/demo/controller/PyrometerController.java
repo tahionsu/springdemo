@@ -1,13 +1,13 @@
-package com.example.springdemo.controller;
+package com.example.spring.demo.controller;
 
-import com.example.springdemo.entity.PyrometerEntity;
-import com.example.springdemo.repository.PyrometerRepository;
+import com.example.spring.demo.repository.PyrometerRepository;
+import com.example.spring.demo.entity.PyrometerEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/pyrometers")
+@RequestMapping("/spring/demo/pyrometers")
 public class PyrometerController {
 
     private final PyrometerRepository pyrometerRepository;
@@ -22,7 +22,7 @@ public class PyrometerController {
             pyrometerRepository.save(pyrometer);
             return ResponseEntity.ok("Successfully");
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Error");
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
@@ -31,7 +31,7 @@ public class PyrometerController {
         try {
             return ResponseEntity.ok(pyrometerRepository.findAll());
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Error");
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
@@ -40,7 +40,17 @@ public class PyrometerController {
         try {
             return ResponseEntity.ok(pyrometerRepository.findById(id));
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Error");
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @DeleteMapping("/del/")
+    public ResponseEntity<?> deletePyrometer(@RequestParam Integer id) {
+        try {
+            pyrometerRepository.deleteById(id);
+            return ResponseEntity.ok(id);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 

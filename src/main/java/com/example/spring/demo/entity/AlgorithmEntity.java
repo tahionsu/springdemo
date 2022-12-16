@@ -1,4 +1,4 @@
-package com.example.springdemo.entity;
+package com.example.spring.demo.entity;
 
 
 import javax.persistence.*;
@@ -7,9 +7,17 @@ import javax.persistence.*;
 @Table(name = "algorithms")
 public class AlgorithmEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
     private String modelName;
+
+    public AlgorithmEntity() {
+    }
+
+    public AlgorithmEntity(Integer id, String modelName) {
+        this.id = id;
+        this.modelName = modelName;
+    }
 
     public Integer getId() {
         return id;
