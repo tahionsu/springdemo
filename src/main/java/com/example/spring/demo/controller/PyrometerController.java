@@ -66,8 +66,22 @@ public class PyrometerController {
     @DeleteMapping("/del/")
     public ResponseEntity<?> deletePyrometer(@RequestParam Integer id) {
         try {
-            pyrometerRepository.deleteById(id);
+            if (pyrometerRepository.existsById(id)) {
+                pyrometerRepository.deleteById(id);
+            } else {
+                return ResponseEntity.badRequest().body("Pyrometer #" + id + " doesn't exist");
+            }
             return ResponseEntity.ok("Pyrometer #" + id + " deleted successfully");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @DeleteMapping("/deleteAll")
+    public ResponseEntity<?> deleteAllPyrometer() {
+        try {
+            pyrometerRepository.deleteAll();
+            return ResponseEntity.ok("Pyrometers deleted successfully"statu);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }

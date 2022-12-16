@@ -58,8 +58,22 @@ public class AlgorithmController {
     @DeleteMapping("/del/")
     public ResponseEntity<?> deleteAlgorithm(@RequestParam Integer id) {
         try {
-            algoRepository.deleteById(id);
+            if (algoRepository.existsById(id)) {
+                algoRepository.deleteById(id);
+            } else {
+                return ResponseEntity.badRequest().body("Algorithm #" + id + " doesn't exist");
+            }
             return ResponseEntity.ok("Algorithm #" + id + " deleted successfully");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @DeleteMapping("/deleteAll")
+    public ResponseEntity<?> deleteAllAlgorithm() {
+        try {
+            algoRepository.deleteAll();
+            return ResponseEntity.ok("Algorithms deleted successfully");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }

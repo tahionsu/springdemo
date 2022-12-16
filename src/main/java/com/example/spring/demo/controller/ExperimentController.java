@@ -60,8 +60,22 @@ public class ExperimentController {
     @DeleteMapping("/del/")
     public ResponseEntity<?> deleteExperiment(@RequestParam Integer id) {
         try {
-            experimentRepository.deleteById(id);
+            if (experimentRepository.existsById(id)) {
+                experimentRepository.deleteById(id);
+            } else {
+                return ResponseEntity.badRequest().body("Experiment #" + id + " doesn't exist");
+            }
             return ResponseEntity.ok("Experiment #" + id + " deleted successfully");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @DeleteMapping("/deleteAll")
+    public ResponseEntity<?> deleteAllExperiment() {
+        try {
+            experimentRepository.deleteAll();
+            return ResponseEntity.ok("Experiments deleted successfully");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
