@@ -81,7 +81,7 @@ public class PyrometerController {
     public ResponseEntity<?> deleteAllPyrometer() {
         try {
             pyrometerRepository.deleteAll();
-            return ResponseEntity.ok("Pyrometers deleted successfully"statu);
+            return ResponseEntity.ok("Pyrometers deleted successfully");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
