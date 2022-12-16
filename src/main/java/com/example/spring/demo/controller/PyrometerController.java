@@ -1,7 +1,7 @@
 package com.example.spring.demo.controller;
 
-import com.example.spring.demo.repository.PyrometerRepository;
 import com.example.spring.demo.entity.PyrometerEntity;
+import com.example.spring.demo.repository.PyrometerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +20,7 @@ public class PyrometerController {
     public ResponseEntity<?> registration(@RequestBody PyrometerEntity pyrometer) {
         try {
             pyrometerRepository.save(pyrometer);
-            return ResponseEntity.ok("Successfully");
+            return ResponseEntity.ok("Pyrometer " + pyrometer.getName() + " added successfully");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -48,7 +48,7 @@ public class PyrometerController {
     public ResponseEntity<?> deletePyrometer(@RequestParam Integer id) {
         try {
             pyrometerRepository.deleteById(id);
-            return ResponseEntity.ok(id);
+            return ResponseEntity.ok("Pyrometer #" + id + " deleted successfully");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }

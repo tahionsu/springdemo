@@ -20,7 +20,8 @@ public class AlgorithmController {
     public ResponseEntity<?> registration(@RequestBody AlgorithmEntity algorithm) {
         try {
             algoRepository.save(algorithm);
-            return ResponseEntity.ok("Successfully");
+            return ResponseEntity.ok("Algorithm " + algorithm.getModelName() + " added successfully");
+
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -48,7 +49,7 @@ public class AlgorithmController {
     public ResponseEntity<?> deleteAlgorithm(@RequestParam Integer id) {
         try {
             algoRepository.deleteById(id);
-            return ResponseEntity.ok(id);
+            return ResponseEntity.ok("Algorithm #" + id + " deleted successfully");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }

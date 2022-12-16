@@ -20,7 +20,9 @@ public class ExperimentController {
     public ResponseEntity<?> registration(@RequestBody ExperimentEntity experiment) {
         try {
             experimentRepository.save(experiment);
-            return ResponseEntity.ok("Successfully");
+            return ResponseEntity.ok("Experiment #"
+                    + experiment.getId() + " "
+                    + experiment.getName() + " Successfully");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -49,7 +51,7 @@ public class ExperimentController {
     public ResponseEntity<?> deleteExperiment(@RequestParam Integer id) {
         try {
             experimentRepository.deleteById(id);
-            return ResponseEntity.ok(id);
+            return ResponseEntity.ok("Experiment #" + id + " deleted successfully");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
