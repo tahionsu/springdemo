@@ -1,7 +1,7 @@
 package com.example.spring.demo.controller;
 
 import com.example.spring.demo.entity.AlgorithmEntity;
-import com.example.spring.demo.repository.AlgorithmRepository;
+import com.example.spring.demo.repository.AlgorithmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,16 +11,16 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/spring/demo/algorithms")
 public class AlgorithmController {
 
-    private final AlgorithmRepository algoRepository;
+    private final AlgorithmService algorithmService;
 
-    public AlgorithmController(@Autowired AlgorithmRepository algoRepository) {
-        this.algoRepository = algoRepository;
+    public AlgorithmController(@Autowired AlgorithmService algorithmService) {
+        this.algorithmService = algorithmService;
     }
 
     @PostMapping("/add")
     public ResponseEntity<?> registration(@RequestBody AlgorithmEntity algorithm) {
         try {
-            algoRepository.save(algorithm);
+            algorithmService.save(algorithm);
             return ResponseEntity.ok("Algorithm " + algorithm.getModelName() + " added successfully");
 
         } catch (Exception e) {
@@ -31,7 +31,7 @@ public class AlgorithmController {
     @GetMapping("/get")
     public ResponseEntity<?> getAllAlgorithms() {
         try {
-            return ResponseEntity.ok(algoRepository.findAll());
+            return ResponseEntity.ok(algorithmService.findAll());
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -40,7 +40,7 @@ public class AlgorithmController {
     @GetMapping("/getById/")
     public ResponseEntity<?> getOneAlgorithmById(@RequestParam(name = "id") Integer id) {
         try {
-            return ResponseEntity.ok(algoRepository.findById(id));
+            return ResponseEntity.ok(algorithmService.findById(id));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -49,7 +49,7 @@ public class AlgorithmController {
     @GetMapping("/getByName/")
     public ResponseEntity<?> getOneAlgorithmByName(@RequestParam(name = "name") String name) {
         try {
-            return ResponseEntity.ok(algoRepository.findByModelName(name));
+            return ResponseEntity.ok(algorithmService.findByModelName(name));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -58,8 +58,8 @@ public class AlgorithmController {
     @DeleteMapping("/del/")
     public ResponseEntity<?> deleteAlgorithm(@RequestParam Integer id) {
         try {
-            if (algoRepository.existsById(id)) {
-                algoRepository.deleteById(id);
+            if (algorithmService.existsById(id)) {
+                algorithmService.deleteById(id);
             } else {
                 return ResponseEntity.badRequest().body("Algorithm #" + id + " doesn't exist");
             }
@@ -72,7 +72,7 @@ public class AlgorithmController {
     @DeleteMapping("/deleteAll")
     public ResponseEntity<?> deleteAllAlgorithms() {
         try {
-            algoRepository.deleteAll();
+            algorithmService.deleteAll();
             return ResponseEntity.ok("Algorithms deleted successfully");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
