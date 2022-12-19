@@ -70,7 +70,7 @@ public class AlgorithmController {
     }
 
     @DeleteMapping("/deleteAll")
-    public ResponseEntity<?> deleteAllAlgorithm() {
+    public ResponseEntity<?> deleteAllAlgorithms() {
         try {
             algoRepository.deleteAll();
             return ResponseEntity.ok("Algorithms deleted successfully");

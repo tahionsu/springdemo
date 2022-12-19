@@ -1,13 +1,20 @@
 package com.example.spring.demo.entity;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "experiments")
 public class ExperimentEntity {
     @Id
@@ -23,4 +30,16 @@ public class ExperimentEntity {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private PyrometerEntity pyrometer;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ExperimentEntity that = (ExperimentEntity) o;
+        return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(algorithm, that.algorithm) && Objects.equals(pyrometer, that.pyrometer);
+    }
+
+    @Override
+    public int hashCode() {
+        return 32;
+    }
 }

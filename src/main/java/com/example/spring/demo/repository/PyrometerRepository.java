@@ -7,5 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PyrometerRepository extends CrudRepository<PyrometerEntity, Integer> {
     PyrometerEntity findByName(String name);
+
     PyrometerEntity findByPort(String port);
 }
