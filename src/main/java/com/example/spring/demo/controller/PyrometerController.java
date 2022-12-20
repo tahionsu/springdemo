@@ -21,7 +21,7 @@ public class PyrometerController {
     public ResponseEntity<?> registration(@RequestBody PyrometerEntity pyrometer) {
         try {
             pyrometerService.registration(pyrometer);
-            return ResponseEntity.ok("Pyrometer " + pyrometer.getName() + " added successfully");
+            return ResponseEntity.ok("Pyrometer added successfully");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }

@@ -21,7 +21,7 @@ public class BankController {
     public ResponseEntity<?> registration(@RequestBody BankEntity bank) {
         try {
             bankService.registration(bank);
-            return ResponseEntity.ok("Bank " + bank.getName() + " added successfully");
+            return ResponseEntity.ok("Bank added successfully");
 
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());

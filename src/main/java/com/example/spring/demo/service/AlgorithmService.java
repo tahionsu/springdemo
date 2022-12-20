@@ -3,7 +3,9 @@ package com.example.spring.demo.service;
 import com.example.spring.demo.entity.AlgorithmEntity;
 import com.example.spring.demo.repository.AlgorithmRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 @SuppressWarnings("unused")
 public class AlgorithmService {
 
@@ -30,17 +32,15 @@ public class AlgorithmService {
     }
 
     public Integer deleteById(Integer id) {
-        algorithmRepository.deleteById(id);
-        return id;
+        if (algorithmRepository.existsById(id)) {
+            algorithmRepository.deleteById(id);
+        }
+        return -1;
     }
 
     public Integer deleteAll() {
         algorithmRepository.deleteAll();
         return 0;
-    }
-
-    public boolean existById(Integer id) {
-        return algorithmRepository.existsById(id);
     }
 
 }

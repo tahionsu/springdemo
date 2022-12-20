@@ -1,7 +1,7 @@
 package com.example.spring.demo.controller;
 
 import com.example.spring.demo.entity.AlgorithmEntity;
-import com.example.spring.demo.repository.AlgorithmRepository;
+import com.example.spring.demo.service.AlgorithmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,18 +11,16 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/spring/demo/algorithms")
 public class AlgorithmController {
 
-    private final AlgorithmRepository algorithmService;
+    private final AlgorithmService algorithmService;
 
-    public AlgorithmController(@Autowired AlgorithmRepository algorithmService) {
+    public AlgorithmController(@Autowired AlgorithmService algorithmService) {
         this.algorithmService = algorithmService;
     }
 
     @PostMapping("/add")
     public ResponseEntity<?> registration(@RequestBody AlgorithmEntity algorithm) {
         try {
-            algorithmService.save(algorithm);
-            return ResponseEntity.ok("Algorithm " + algorithm.getModelName() + " added successfully");
-
+            return ResponseEntity.ok(algorithmService.registration(algorithm));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -58,12 +56,7 @@ public class AlgorithmController {
     @DeleteMapping("/del/")
     public ResponseEntity<?> deleteAlgorithm(@RequestParam Integer id) {
         try {
-            if (algorithmService.existsById(id)) {
-                algorithmService.deleteById(id);
-            } else {
-                return ResponseEntity.badRequest().body("Algorithm #" + id + " doesn't exist");
-            }
-            return ResponseEntity.ok("Algorithm #" + id + " deleted successfully");
+            return ResponseEntity.ok("Return code: " + algorithmService.deleteById(id));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -72,8 +65,7 @@ public class AlgorithmController {
     @DeleteMapping("/deleteAll")
     public ResponseEntity<?> deleteAllAlgorithms() {
         try {
-            algorithmService.deleteAll();
-            return ResponseEntity.ok("Algorithms deleted successfully");
+            return ResponseEntity.ok("Return code: " + algorithmService.deleteAll());
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }

@@ -4,7 +4,9 @@ package com.example.spring.demo.service;
 import com.example.spring.demo.entity.PersonEntity;
 import com.example.spring.demo.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class PersonService {
     private final PersonRepository personRepository;
 

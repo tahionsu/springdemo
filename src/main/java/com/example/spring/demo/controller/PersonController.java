@@ -20,7 +20,7 @@ public class PersonController {
     public ResponseEntity<?> registration(@RequestBody PersonEntity person) {
         try {
             personService.registration(person);
-            return ResponseEntity.ok("Person " + person.getName() + " added successfully");
+            return ResponseEntity.ok("Person added successfully");
 
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());

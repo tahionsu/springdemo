@@ -3,7 +3,9 @@ package com.example.spring.demo.service;
 import com.example.spring.demo.entity.ExperimentEntity;
 import com.example.spring.demo.repository.ExperimentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ExperimentService {
     private final ExperimentRepository experimentRepository;
 

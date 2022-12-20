@@ -4,7 +4,9 @@ package com.example.spring.demo.service;
 import com.example.spring.demo.entity.PyrometerEntity;
 import com.example.spring.demo.repository.PyrometerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class PyrometerService {
     private final PyrometerRepository pyrometerRepository;
 

@@ -21,9 +21,7 @@ public class ExperimentController {
     public ResponseEntity<?> registration(@RequestBody ExperimentEntity experiment) {
         try {
             experimentService.save(experiment);
-            return ResponseEntity.ok("Experiment #"
-                    + experiment.getId() + " "
-                    + experiment.getName() + " Successfully");
+            return ResponseEntity.ok("Successfully");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
