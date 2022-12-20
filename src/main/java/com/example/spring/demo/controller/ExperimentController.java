@@ -1,7 +1,7 @@
 package com.example.spring.demo.controller;
 
 import com.example.spring.demo.entity.ExperimentEntity;
-import com.example.spring.demo.repository.ExperimentRepository;
+import com.example.spring.demo.service.ExperimentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,17 +11,16 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/spring/demo/experiments")
 public class ExperimentController {
 
-    private final ExperimentRepository experimentService;
+    private final ExperimentService experimentService;
 
-    public ExperimentController(@Autowired ExperimentRepository experimentRepository) {
-        this.experimentService = experimentRepository;
+    public ExperimentController(@Autowired ExperimentService experimentService) {
+        this.experimentService = experimentService;
     }
 
     @PostMapping("/add")
     public ResponseEntity<?> registration(@RequestBody ExperimentEntity experiment) {
         try {
-            experimentService.save(experiment);
-            return ResponseEntity.ok("Successfully");
+            return ResponseEntity.ok(experimentService.registration(experiment));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -58,12 +57,7 @@ public class ExperimentController {
     @DeleteMapping("/del/")
     public ResponseEntity<?> deleteExperiment(@RequestParam Integer id) {
         try {
-            if (experimentService.existsById(id)) {
-                experimentService.deleteById(id);
-            } else {
-                return ResponseEntity.badRequest().body("Experiment #" + id + " doesn't exist");
-            }
-            return ResponseEntity.ok("Experiment #" + id + " deleted successfully");
+            return ResponseEntity.ok("Return code: " + experimentService.deleteById(id));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -72,8 +66,7 @@ public class ExperimentController {
     @DeleteMapping("/deleteAll")
     public ResponseEntity<?> deleteAllExperiment() {
         try {
-            experimentService.deleteAll();
-            return ResponseEntity.ok("Experiments deleted successfully");
+            return ResponseEntity.ok("Return code: " + experimentService.deleteAll());
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }

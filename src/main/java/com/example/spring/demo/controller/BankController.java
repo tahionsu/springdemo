@@ -20,9 +20,7 @@ public class BankController {
 
     public ResponseEntity<?> registration(@RequestBody BankEntity bank) {
         try {
-            bankService.registration(bank);
-            return ResponseEntity.ok("Bank added successfully");
-
+            return ResponseEntity.ok(bankService.registration(bank));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
