@@ -20,8 +20,7 @@ public class PyrometerController {
     @PostMapping("/add")
     public ResponseEntity<?> registration(@RequestBody PyrometerEntity pyrometer) {
         try {
-            pyrometerService.registration(pyrometer);
-            return ResponseEntity.ok("Pyrometer added successfully");
+            return ResponseEntity.ok(pyrometerService.registration(pyrometer));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -66,12 +65,7 @@ public class PyrometerController {
     @DeleteMapping("/del/")
     public ResponseEntity<?> deletePyrometer(@RequestParam Integer id) {
         try {
-            if (pyrometerService.existById(id)) {
-                pyrometerService.deleteById(id);
-            } else {
-                return ResponseEntity.badRequest().body("Pyrometer #" + id + " doesn't exist");
-            }
-            return ResponseEntity.ok("Pyrometer #" + id + " deleted successfully");
+            return ResponseEntity.ok("Return code: " + pyrometerService.deleteById(id));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -80,8 +74,7 @@ public class PyrometerController {
     @DeleteMapping("/deleteAll")
     public ResponseEntity<?> deleteAllPyrometer() {
         try {
-            pyrometerService.deleteAll();
-            return ResponseEntity.ok("Pyrometers deleted successfully");
+            return ResponseEntity.ok("Return code: " + pyrometerService.deleteAll());
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }

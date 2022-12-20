@@ -2,9 +2,12 @@ package com.example.spring.demo.service;
 
 
 import com.example.spring.demo.entity.PyrometerEntity;
+import com.example.spring.demo.model.Pyrometer;
 import com.example.spring.demo.repository.PyrometerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 
 @Service
 public class PyrometerService {
@@ -14,38 +17,42 @@ public class PyrometerService {
         this.pyrometerRepository = pyrometerRepository;
     }
 
-    public PyrometerEntity registration(PyrometerEntity person) {
-        return pyrometerRepository.save(person);
+    public Pyrometer registration(PyrometerEntity person) {
+        return Pyrometer.toModel(pyrometerRepository.save(person));
     }
 
-    public Iterable<PyrometerEntity> findAll() {
-        return pyrometerRepository.findAll();
+    public ArrayList<Pyrometer> findAll() {
+        ArrayList<Pyrometer> pyrometers = new ArrayList<>();
+
+        for (PyrometerEntity entity : pyrometerRepository.findAll()) {
+            pyrometers.add(Pyrometer.toModel(entity));
+        }
+        return pyrometers;
     }
 
-    public PyrometerEntity findById(Integer id) {
-        return pyrometerRepository.findById(id).get();
+    public Pyrometer findById(Integer id) {
+        return Pyrometer.toModel(pyrometerRepository.findById(id).get());
     }
 
-    public PyrometerEntity findByName(String name) {
-        return pyrometerRepository.findByName(name);
+    public Pyrometer findByName(String name) {
+        return Pyrometer.toModel(pyrometerRepository.findByName(name));
     }
 
-    public PyrometerEntity findByPort(String port) {
-        return pyrometerRepository.findByPort(port);
+    public Pyrometer findByPort(String port) {
+        return Pyrometer.toModel(pyrometerRepository.findByPort(port));
     }
 
     public Integer deleteById(Integer id) {
-        pyrometerRepository.deleteById(id);
-        return id;
+        if (pyrometerRepository.existsById(id)) {
+            pyrometerRepository.deleteById(id);
+            return 0;
+        }
+        return -1;
     }
 
     public Integer deleteAll() {
         pyrometerRepository.deleteAll();
         return 0;
-    }
-
-    public boolean existById(Integer id) {
-        return pyrometerRepository.existsById(id);
     }
 
 }
