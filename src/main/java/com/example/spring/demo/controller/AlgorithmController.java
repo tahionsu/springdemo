@@ -1,7 +1,7 @@
 package com.example.spring.demo.controller;
 
 import com.example.spring.demo.entity.AlgorithmEntity;
-import com.example.spring.demo.repository.AlgorithmService;
+import com.example.spring.demo.repository.AlgorithmRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/spring/demo/algorithms")
 public class AlgorithmController {
 
-    private final AlgorithmService algorithmService;
+    private final AlgorithmRepository algorithmService;
 
-    public AlgorithmController(@Autowired AlgorithmService algorithmService) {
+    public AlgorithmController(@Autowired AlgorithmRepository algorithmService) {
         this.algorithmService = algorithmService;
     }
 

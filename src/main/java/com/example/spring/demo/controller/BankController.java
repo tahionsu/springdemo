@@ -1,7 +1,7 @@
 package com.example.spring.demo.controller;
 
 import com.example.spring.demo.entity.BankEntity;
-import com.example.spring.demo.repository.BankRepository;
+import com.example.spring.demo.service.BankService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,16 +10,17 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/spring/demo/banks")
 public class BankController {
-    private final BankRepository bankRepository;
+    private final BankService bankService;
 
-    public BankController(@Autowired BankRepository bankRepository) {
-        this.bankRepository = bankRepository;
+    public BankController(@Autowired BankService bankService) {
+        this.bankService = bankService;
     }
 
     @PostMapping("/add")
+
     public ResponseEntity<?> registration(@RequestBody BankEntity bank) {
         try {
-            bankRepository.save(bank);
+            bankService.registration(bank);
             return ResponseEntity.ok("Bank " + bank.getName() + " added successfully");
 
         } catch (Exception e) {
@@ -30,7 +31,7 @@ public class BankController {
     @GetMapping("/get")
     public ResponseEntity<?> getAllBanks() {
         try {
-            return ResponseEntity.ok(bankRepository.findAll());
+            return ResponseEntity.ok(bankService.findAll());
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -39,7 +40,7 @@ public class BankController {
     @GetMapping("/getById/")
     public ResponseEntity<?> getOneBankById(@RequestParam(name = "id") Integer id) {
         try {
-            return ResponseEntity.ok(bankRepository.findById(id));
+            return ResponseEntity.ok(bankService.findById(id));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -48,7 +49,7 @@ public class BankController {
     @GetMapping("/getByName/")
     public ResponseEntity<?> getOneBankByName(@RequestParam(name = "name") String name) {
         try {
-            return ResponseEntity.ok(bankRepository.findByName(name));
+            return ResponseEntity.ok(bankService.findByName(name));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -57,8 +58,8 @@ public class BankController {
     @DeleteMapping("/del/")
     public ResponseEntity<?> deleteBank(@RequestParam Integer id) {
         try {
-            if (bankRepository.existsById(id)) {
-                bankRepository.deleteById(id);
+            if (bankService.existById(id)) {
+                bankService.deleteById(id);
             } else {
                 return ResponseEntity.badRequest().body("Bank #" + id + " doesn't exist");
             }
@@ -71,7 +72,7 @@ public class BankController {
     @DeleteMapping("/deleteAll")
     public ResponseEntity<?> deleteAllBanks() {
         try {
-            bankRepository.deleteAll();
+            bankService.deleteAll();
             return ResponseEntity.ok("Banks deleted successfully");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());

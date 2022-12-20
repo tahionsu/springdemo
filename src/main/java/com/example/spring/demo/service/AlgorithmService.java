@@ -1,14 +1,15 @@
 package com.example.spring.demo.service;
 
 import com.example.spring.demo.entity.AlgorithmEntity;
+import com.example.spring.demo.repository.AlgorithmRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @SuppressWarnings("unused")
 public class AlgorithmService {
 
-    private final com.example.spring.demo.repository.AlgorithmService algorithmRepository;
+    private final AlgorithmRepository algorithmRepository;
 
-    public AlgorithmService(@Autowired com.example.spring.demo.repository.AlgorithmService algorithmRepository) {
+    public AlgorithmService(@Autowired AlgorithmRepository algorithmRepository) {
         this.algorithmRepository = algorithmRepository;
     }
 
@@ -36,6 +37,10 @@ public class AlgorithmService {
     public Integer deleteAll() {
         algorithmRepository.deleteAll();
         return 0;
+    }
+
+    public boolean existById(Integer id) {
+        return algorithmRepository.existsById(id);
     }
 
 }

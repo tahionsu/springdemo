@@ -11,16 +11,16 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/spring/demo/experiments")
 public class ExperimentController {
 
-    private final ExperimentRepository experimentRepository;
+    private final ExperimentRepository experimentService;
 
     public ExperimentController(@Autowired ExperimentRepository experimentRepository) {
-        this.experimentRepository = experimentRepository;
+        this.experimentService = experimentRepository;
     }
 
     @PostMapping("/add")
     public ResponseEntity<?> registration(@RequestBody ExperimentEntity experiment) {
         try {
-            experimentRepository.save(experiment);
+            experimentService.save(experiment);
             return ResponseEntity.ok("Experiment #"
                     + experiment.getId() + " "
                     + experiment.getName() + " Successfully");
@@ -32,7 +32,7 @@ public class ExperimentController {
     @GetMapping("/get")
     public ResponseEntity<?> getAllExperiments() {
         try {
-            return ResponseEntity.ok(experimentRepository.findAll());
+            return ResponseEntity.ok(experimentService.findAll());
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return ResponseEntity.badRequest().body(e.getMessage());
@@ -42,7 +42,7 @@ public class ExperimentController {
     @GetMapping("/getById/")
     public ResponseEntity<?> getOneExperimentById(@RequestParam Integer id) {
         try {
-            return ResponseEntity.ok(experimentRepository.findById(id));
+            return ResponseEntity.ok(experimentService.findById(id));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -51,7 +51,7 @@ public class ExperimentController {
     @GetMapping("/getByName/")
     public ResponseEntity<?> getOneExperimentByName(@RequestParam String name) {
         try {
-            return ResponseEntity.ok(experimentRepository.findByName(name));
+            return ResponseEntity.ok(experimentService.findByName(name));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -60,8 +60,8 @@ public class ExperimentController {
     @DeleteMapping("/del/")
     public ResponseEntity<?> deleteExperiment(@RequestParam Integer id) {
         try {
-            if (experimentRepository.existsById(id)) {
-                experimentRepository.deleteById(id);
+            if (experimentService.existsById(id)) {
+                experimentService.deleteById(id);
             } else {
                 return ResponseEntity.badRequest().body("Experiment #" + id + " doesn't exist");
             }
@@ -74,7 +74,7 @@ public class ExperimentController {
     @DeleteMapping("/deleteAll")
     public ResponseEntity<?> deleteAllExperiment() {
         try {
-            experimentRepository.deleteAll();
+            experimentService.deleteAll();
             return ResponseEntity.ok("Experiments deleted successfully");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());

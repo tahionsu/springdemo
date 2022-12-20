@@ -1,7 +1,7 @@
 package com.example.spring.demo.controller;
 
 import com.example.spring.demo.entity.PyrometerEntity;
-import com.example.spring.demo.repository.PyrometerRepository;
+import com.example.spring.demo.service.PyrometerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,16 +11,16 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/spring/demo/pyrometers")
 public class PyrometerController {
 
-    private final PyrometerRepository pyrometerRepository;
+    private final PyrometerService pyrometerService;
 
-    public PyrometerController(@Autowired PyrometerRepository pyrometerRepository) {
-        this.pyrometerRepository = pyrometerRepository;
+    public PyrometerController(@Autowired PyrometerService pyrometerRepository) {
+        this.pyrometerService = pyrometerRepository;
     }
 
     @PostMapping("/add")
     public ResponseEntity<?> registration(@RequestBody PyrometerEntity pyrometer) {
         try {
-            pyrometerRepository.save(pyrometer);
+            pyrometerService.registration(pyrometer);
             return ResponseEntity.ok("Pyrometer " + pyrometer.getName() + " added successfully");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
@@ -30,7 +30,7 @@ public class PyrometerController {
     @GetMapping("/get")
     public ResponseEntity<?> getAllPyrometers() {
         try {
-            return ResponseEntity.ok(pyrometerRepository.findAll());
+            return ResponseEntity.ok(pyrometerService.findAll());
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -39,7 +39,7 @@ public class PyrometerController {
     @GetMapping("/getById/")
     public ResponseEntity<?> getOnePyrometerById(@RequestParam Integer id) {
         try {
-            return ResponseEntity.ok(pyrometerRepository.findById(id));
+            return ResponseEntity.ok(pyrometerService.findById(id));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -48,7 +48,7 @@ public class PyrometerController {
     @GetMapping("/getByName/")
     public ResponseEntity<?> getOnePyrometerByName(@RequestParam String name) {
         try {
-            return ResponseEntity.ok(pyrometerRepository.findByName(name));
+            return ResponseEntity.ok(pyrometerService.findByName(name));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -57,7 +57,7 @@ public class PyrometerController {
     @GetMapping("/getByPort/")
     public ResponseEntity<?> getOnePyrometerByPort(@RequestParam String port) {
         try {
-            return ResponseEntity.ok(pyrometerRepository.findByPort(port));
+            return ResponseEntity.ok(pyrometerService.findByPort(port));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -66,8 +66,8 @@ public class PyrometerController {
     @DeleteMapping("/del/")
     public ResponseEntity<?> deletePyrometer(@RequestParam Integer id) {
         try {
-            if (pyrometerRepository.existsById(id)) {
-                pyrometerRepository.deleteById(id);
+            if (pyrometerService.existById(id)) {
+                pyrometerService.deleteById(id);
             } else {
                 return ResponseEntity.badRequest().body("Pyrometer #" + id + " doesn't exist");
             }
@@ -80,7 +80,7 @@ public class PyrometerController {
     @DeleteMapping("/deleteAll")
     public ResponseEntity<?> deleteAllPyrometer() {
         try {
-            pyrometerRepository.deleteAll();
+            pyrometerService.deleteAll();
             return ResponseEntity.ok("Pyrometers deleted successfully");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
