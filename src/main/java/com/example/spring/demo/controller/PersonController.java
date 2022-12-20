@@ -19,9 +19,7 @@ public class PersonController {
     @PostMapping("/add")
     public ResponseEntity<?> registration(@RequestBody PersonEntity person) {
         try {
-            personService.registration(person);
-            return ResponseEntity.ok("Person added successfully");
-
+            return ResponseEntity.ok(personService.registration(person));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -57,12 +55,7 @@ public class PersonController {
     @DeleteMapping("/del/")
     public ResponseEntity<?> deletePerson(@RequestParam Integer id) {
         try {
-            if (personService.existById(id)) {
-                personService.deleteById(id);
-            } else {
-                return ResponseEntity.badRequest().body("Person #" + id + " doesn't exist");
-            }
-            return ResponseEntity.ok("Person #" + id + " deleted successfully");
+            return ResponseEntity.ok("Return code: " + personService.deleteById(id));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -71,8 +64,7 @@ public class PersonController {
     @DeleteMapping("/deleteAll")
     public ResponseEntity<?> deleteAllBanks() {
         try {
-            personService.deleteAll();
-            return ResponseEntity.ok("Persons deleted successfully");
+            return ResponseEntity.ok("Return code: " + personService.deleteAll());
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
