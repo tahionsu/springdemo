@@ -1,9 +1,12 @@
 package com.example.spring.demo.service;
 
 import com.example.spring.demo.entity.BankEntity;
+import com.example.spring.demo.model.Bank;
 import com.example.spring.demo.repository.BankRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 
 @Service
 public class BankService {
@@ -13,34 +16,39 @@ public class BankService {
         this.bankRepository = bankRepository;
     }
 
-    public BankEntity registration(BankEntity bank) {
-        return bankRepository.save(bank);
+    public Bank registration(BankEntity bank) {
+        return Bank.toModel(bankRepository.save(bank));
     }
 
-    public Iterable<BankEntity> findAll() {
-        return bankRepository.findAll();
+    public ArrayList<Bank> findAll() {
+        ArrayList<Bank> banks = new ArrayList<>();
+
+        for (BankEntity entity : bankRepository.findAll()) {
+            banks.add(Bank.toModel(entity));
+        }
+
+        return banks;
     }
 
-    public BankEntity findById(Integer id) {
-        return bankRepository.findById(id).get();
+    public Bank findById(Integer id) {
+        return Bank.toModel(bankRepository.findById(id).get());
     }
 
-    public BankEntity findByName(String name) {
-        return bankRepository.findByName(name);
+    public Bank findByName(String name) {
+        return Bank.toModel(bankRepository.findByName(name));
     }
 
     public Integer deleteById(Integer id) {
-        bankRepository.deleteById(id);
-        return id;
+        if (bankRepository.existsById(id)) {
+            bankRepository.deleteById(id);
+            return 0;
+        }
+        return -1;
     }
 
     public Integer deleteAll() {
         bankRepository.deleteAll();
         return 0;
-    }
-
-    public boolean existById(Integer id) {
-        return bankRepository.existsById(id);
     }
 
 }

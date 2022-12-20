@@ -58,12 +58,7 @@ public class BankController {
     @DeleteMapping("/del/")
     public ResponseEntity<?> deleteBank(@RequestParam Integer id) {
         try {
-            if (bankService.existById(id)) {
-                bankService.deleteById(id);
-            } else {
-                return ResponseEntity.badRequest().body("Bank #" + id + " doesn't exist");
-            }
-            return ResponseEntity.ok("Bank #" + id + " deleted successfully");
+            return ResponseEntity.ok("Return code: " + bankService.deleteById(id));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -72,8 +67,7 @@ public class BankController {
     @DeleteMapping("/deleteAll")
     public ResponseEntity<?> deleteAllBanks() {
         try {
-            bankService.deleteAll();
-            return ResponseEntity.ok("Banks deleted successfully");
+            return ResponseEntity.ok("Return code: " + bankService.deleteAll());
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
