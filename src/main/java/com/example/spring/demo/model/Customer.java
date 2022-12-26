@@ -15,18 +15,18 @@ import java.util.UUID;
 public class Customer {
 
     private UUID id;
-
-    private Integer age;
     private String firstname;
     private String lastname;
+    private Integer age;
+
 
     public static Customer toModel(CustomerEntity entity) {
         Customer customer = new Customer();
 
         customer.setId(entity.getId());
         customer.setAge(entity.getAge());
-        customer.setFirstname(entity.getFirstname());
-        customer.setLastname(entity.getLastname());
+        customer.setFirstname(entity.getFirstName());
+        customer.setLastname(entity.getLastName());
 
         return customer;
     }

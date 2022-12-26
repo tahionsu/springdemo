@@ -39,8 +39,14 @@ public class ProductService {
         return Product.toModel(productRepository.findByProductName(productName));
     }
 
-    public Product findByCost(Double cost) {
-        return Product.toModel(productRepository.findByCost(cost));
+    public ArrayList<Product> findByCost(Double cost) {
+        ArrayList<Product> products = new ArrayList<>();
+
+        for (ProductEntity entity : productRepository.findByCost(cost)) {
+            products.add(Product.toModel(entity));
+        }
+
+        return products;
     }
 
     public Integer deleteById(UUID id) {

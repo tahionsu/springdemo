@@ -21,34 +21,33 @@ public class CustomerEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private UUID id;
+    @Column(name = "firstname")
+    private String firstName;
+    @Column(name = "lastname")
+    private String lastName;
     @Column(name = "age")
     private Integer age;
-    @Column(name = "firstname")
-    private String firstname;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CustomerEntity that = (CustomerEntity) o;
-        return Objects.equals(id, that.id) && Objects.equals(age, that.age) && Objects.equals(firstname, that.firstname) && Objects.equals(lastname, that.lastname);
+        return Objects.equals(id, that.id) && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(age, that.age);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, age, firstname, lastname);
+        return Objects.hash(id, firstName, lastName, age);
     }
-
-    @Column(name = "lastname")
-    private String lastname;
 
     @Override
     public String toString() {
         return "CustomerEntity{" +
                 "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 ", age=" + age +
-                ", firstname='" + firstname + '\'' +
-                ", lastname='" + lastname + '\'' +
                 '}';
     }
 }

@@ -43,8 +43,14 @@ public class CustomerService {
         return Customer.toModel(customerRepository.findByLastName(lastname));
     }
 
-    public Customer findByAge(Integer age) {
-        return Customer.toModel(customerRepository.findByAge(age));
+    public ArrayList<Customer> findByAge(Integer age) {
+        ArrayList<Customer> customers = new ArrayList<>();
+
+        for (CustomerEntity entity : customerRepository.findByAge(age)) {
+            customers.add(Customer.toModel(entity));
+        }
+
+        return customers;
     }
 
     public Integer deleteById(UUID id) {
