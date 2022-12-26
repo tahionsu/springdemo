@@ -28,7 +28,7 @@ public class CoffeeController {
     }
 
     @GetMapping("/get")
-    public ResponseEntity<?> getAllPyrometers() {
+    public ResponseEntity<?> getAllCoffees() {
         try {
             return ResponseEntity.ok(coffeeService.findAll());
         } catch (Exception e) {
@@ -64,7 +64,7 @@ public class CoffeeController {
     }
 
     @DeleteMapping("/del/")
-    public ResponseEntity<?> deletePyrometer(@RequestParam UUID id) {
+    public ResponseEntity<?> deleteCoffee(@RequestParam UUID id) {
         try {
             return ResponseEntity.ok("Return code: " + coffeeService.deleteById(id));
         } catch (Exception e) {
@@ -73,7 +73,7 @@ public class CoffeeController {
     }
 
     @DeleteMapping("/deleteAll")
-    public ResponseEntity<?> deleteAllPyrometer() {
+    public ResponseEntity<?> deleteAllCoffees() {
         try {
             return ResponseEntity.ok("Return code: " + coffeeService.deleteAll());
         } catch (Exception e) {
