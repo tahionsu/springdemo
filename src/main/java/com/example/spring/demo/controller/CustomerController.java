@@ -45,18 +45,19 @@ public class CustomerController {
     }
 
     @GetMapping("/getByFirstName/")
-    public ResponseEntity<?> getCustomerByFirstName(@RequestParam String name) {
+    public ResponseEntity<?> getCustomerByFirstName(@RequestParam String firstName) {
         try {
-            return ResponseEntity.ok(customerService.findByFirstName(name));
+            return ResponseEntity.ok(customerService.findByFirstName(firstName));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
     @GetMapping("/getByLastName/")
-    public ResponseEntity<?> getCustomerByLastName(@RequestParam String name) {
+    public ResponseEntity<?> getCustomerByLastName(@RequestParam String lastName) {
         try {
-            return ResponseEntity.ok(customerService.findByLastName(name));
+            return ResponseEntity.ok(customerService.findByLastName(lastName));
+
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
