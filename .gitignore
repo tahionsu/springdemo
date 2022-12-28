@@ -18,6 +18,7 @@ target/
 *.iml
 *.ipr
 application-local.prorepties
+application.properties
 .mvn
 
 ### NetBeans ###
