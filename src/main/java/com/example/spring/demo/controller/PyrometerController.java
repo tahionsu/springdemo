@@ -35,7 +35,7 @@ public class PyrometerController {
         }
     }
 
-    @GetMapping("/getById/")
+    @GetMapping("/getById")
     public ResponseEntity<?> getOnePyrometerById(@RequestParam Integer id) {
         try {
             return ResponseEntity.ok(pyrometerService.findById(id));
@@ -44,7 +44,7 @@ public class PyrometerController {
         }
     }
 
-    @GetMapping("/getByName/")
+    @GetMapping("/getByName")
     public ResponseEntity<?> getOnePyrometerByName(@RequestParam String name) {
         try {
             return ResponseEntity.ok(pyrometerService.findByName(name));
@@ -53,7 +53,7 @@ public class PyrometerController {
         }
     }
 
-    @GetMapping("/getByPort/")
+    @GetMapping("/getByPort")
     public ResponseEntity<?> getOnePyrometerByPort(@RequestParam String port) {
         try {
             return ResponseEntity.ok(pyrometerService.findByPort(port));
@@ -62,7 +62,7 @@ public class PyrometerController {
         }
     }
 
-    @DeleteMapping("/del/")
+    @DeleteMapping("/del")
     public ResponseEntity<?> deletePyrometer(@RequestParam Integer id) {
         try {
             return ResponseEntity.ok("Return code: " + pyrometerService.deleteById(id));

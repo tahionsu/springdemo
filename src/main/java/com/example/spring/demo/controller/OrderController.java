@@ -35,7 +35,7 @@ public class OrderController {
         }
     }
 
-    @GetMapping("/getById/")
+    @GetMapping("/getById")
     public ResponseEntity<?> getOrderById(@RequestParam UUID id) {
         try {
             return ResponseEntity.ok(orderService.findById(id));
@@ -44,7 +44,7 @@ public class OrderController {
         }
     }
 
-    @DeleteMapping("/del/")
+    @DeleteMapping("/del")
     public ResponseEntity<?> deleteOrder(@RequestParam UUID id) {
         try {
             return ResponseEntity.ok("Return code: " + orderService.deleteById(id));

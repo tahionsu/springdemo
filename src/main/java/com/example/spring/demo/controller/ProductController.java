@@ -35,7 +35,7 @@ public class ProductController {
         }
     }
 
-    @GetMapping("/getById/")
+    @GetMapping("/getById")
     public ResponseEntity<?> getProductById(@RequestParam UUID id) {
         try {
             return ResponseEntity.ok(productService.findById(id));
@@ -44,7 +44,7 @@ public class ProductController {
         }
     }
 
-    @GetMapping("/getByProductName/")
+    @GetMapping("/getByProductName")
     public ResponseEntity<?> getProductByName(@RequestParam String productName) {
         try {
             return ResponseEntity.ok(productService.findByProductName(productName));
@@ -53,7 +53,7 @@ public class ProductController {
         }
     }
 
-    @GetMapping("/getByCost/")
+    @GetMapping("/getByCost")
     public ResponseEntity<?> getProductByCost(@RequestParam Double cost) {
         try {
             return ResponseEntity.ok(productService.findByCost(cost));
@@ -62,7 +62,7 @@ public class ProductController {
         }
     }
 
-    @DeleteMapping("/del/")
+    @DeleteMapping("/del")
     public ResponseEntity<?> deleteProduct(@RequestParam UUID id) {
         try {
             return ResponseEntity.ok("Return code: " + productService.deleteById(id));

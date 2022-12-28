@@ -35,7 +35,7 @@ public class CustomerController {
         }
     }
 
-    @GetMapping("/getById/")
+    @GetMapping("/getById")
     public ResponseEntity<?> getCustomerById(@RequestParam UUID id) {
         try {
             return ResponseEntity.ok(customerService.findById(id));
@@ -44,7 +44,7 @@ public class CustomerController {
         }
     }
 
-    @GetMapping("/getByFirstName/")
+    @GetMapping("/getByFirstName")
     public ResponseEntity<?> getCustomerByFirstName(@RequestParam String firstName) {
         try {
             return ResponseEntity.ok(customerService.findByFirstName(firstName));
@@ -53,7 +53,7 @@ public class CustomerController {
         }
     }
 
-    @GetMapping("/getByLastName/")
+    @GetMapping("/getByLastName")
     public ResponseEntity<?> getCustomerByLastName(@RequestParam String lastName) {
         try {
             return ResponseEntity.ok(customerService.findByLastName(lastName));
@@ -63,7 +63,7 @@ public class CustomerController {
         }
     }
 
-    @GetMapping("/getByAge/")
+    @GetMapping("/getByAge")
     public ResponseEntity<?> getCustomerByAge(@RequestParam Integer age) {
         try {
             return ResponseEntity.ok(customerService.findByAge(age));
@@ -72,7 +72,7 @@ public class CustomerController {
         }
     }
 
-    @DeleteMapping("/del/")
+    @DeleteMapping("/del")
     public ResponseEntity<?> deleteCustomer(@RequestParam UUID id) {
         try {
             return ResponseEntity.ok("Return code: " + customerService.deleteById(id));

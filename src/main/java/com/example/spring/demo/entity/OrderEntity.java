@@ -44,7 +44,7 @@ public class OrderEntity {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, customer, product, quantity);
+        return 32;
     }
 
     @Override

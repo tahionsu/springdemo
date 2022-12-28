@@ -35,7 +35,7 @@ public class BankController {
         }
     }
 
-    @GetMapping("/getById/")
+    @GetMapping("/getById")
     public ResponseEntity<?> getOneBankById(@RequestParam(name = "id") Integer id) {
         try {
             return ResponseEntity.ok(bankService.findById(id));
@@ -44,7 +44,7 @@ public class BankController {
         }
     }
 
-    @GetMapping("/getByName/")
+    @GetMapping("/getByName")
     public ResponseEntity<?> getOneBankByName(@RequestParam(name = "name") String name) {
         try {
             return ResponseEntity.ok(bankService.findByName(name));
@@ -53,7 +53,7 @@ public class BankController {
         }
     }
 
-    @DeleteMapping("/del/")
+    @DeleteMapping("/del")
     public ResponseEntity<?> deleteBank(@RequestParam Integer id) {
         try {
             return ResponseEntity.ok("Return code: " + bankService.deleteById(id));

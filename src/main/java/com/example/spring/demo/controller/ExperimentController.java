@@ -36,7 +36,7 @@ public class ExperimentController {
         }
     }
 
-    @GetMapping("/getById/")
+    @GetMapping("/getById")
     public ResponseEntity<?> getOneExperimentById(@RequestParam Integer id) {
         try {
             return ResponseEntity.ok(experimentService.findById(id));
@@ -45,7 +45,7 @@ public class ExperimentController {
         }
     }
 
-    @GetMapping("/getByName/")
+    @GetMapping("/getByName")
     public ResponseEntity<?> getOneExperimentByName(@RequestParam String name) {
         try {
             return ResponseEntity.ok(experimentService.findByName(name));
@@ -54,7 +54,7 @@ public class ExperimentController {
         }
     }
 
-    @DeleteMapping("/del/")
+    @DeleteMapping("/del")
     public ResponseEntity<?> deleteExperiment(@RequestParam Integer id) {
         try {
             return ResponseEntity.ok("Return code: " + experimentService.deleteById(id));

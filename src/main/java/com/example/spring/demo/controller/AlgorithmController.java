@@ -35,7 +35,7 @@ public class AlgorithmController {
         }
     }
 
-    @GetMapping("/getById/")
+    @GetMapping("/getById")
     public ResponseEntity<?> getOneAlgorithmById(@RequestParam(name = "id") Integer id) {
         try {
             return ResponseEntity.ok(algorithmService.findById(id));
@@ -44,7 +44,7 @@ public class AlgorithmController {
         }
     }
 
-    @GetMapping("/getByName/")
+    @GetMapping("/getByName")
     public ResponseEntity<?> getOneAlgorithmByName(@RequestParam(name = "name") String name) {
         try {
             return ResponseEntity.ok(algorithmService.findByModelName(name));
@@ -53,7 +53,7 @@ public class AlgorithmController {
         }
     }
 
-    @DeleteMapping("/del/")
+    @DeleteMapping("/del")
     public ResponseEntity<?> deleteAlgorithm(@RequestParam Integer id) {
         try {
             return ResponseEntity.ok("Return code: " + algorithmService.deleteById(id));

@@ -38,7 +38,7 @@ public class CustomerEntity {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, age);
+        return 32;
     }
 
     @Override

@@ -36,7 +36,7 @@ public class CoffeeController {
         }
     }
 
-    @GetMapping("/getById/")
+    @GetMapping("/getById")
     public ResponseEntity<?> getOneCoffeeById(@RequestParam UUID id) {
         try {
             return ResponseEntity.ok(coffeeService.findById(id));
@@ -45,7 +45,7 @@ public class CoffeeController {
         }
     }
 
-    @GetMapping("/getByName/")
+    @GetMapping("/getByName")
     public ResponseEntity<?> getOneCoffeeByName(@RequestParam String name) {
         try {
             return ResponseEntity.ok(coffeeService.findByName(name));
@@ -54,7 +54,7 @@ public class CoffeeController {
         }
     }
 
-    @GetMapping("/getByGrind/")
+    @GetMapping("/getByGrind")
     public ResponseEntity<?> getOneCoffeeByGrind(@RequestParam String grind) {
         try {
             return ResponseEntity.ok(coffeeService.findByGrind(grind));
@@ -63,7 +63,7 @@ public class CoffeeController {
         }
     }
 
-    @DeleteMapping("/del/")
+    @DeleteMapping("/del")
     public ResponseEntity<?> deleteCoffee(@RequestParam UUID id) {
         try {
             return ResponseEntity.ok("Return code: " + coffeeService.deleteById(id));

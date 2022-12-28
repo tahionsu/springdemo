@@ -35,7 +35,7 @@ public class ProductEntity {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, productName, cost);
+        return 32;
     }
 
     @Override

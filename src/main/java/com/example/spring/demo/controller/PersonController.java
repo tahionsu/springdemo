@@ -34,7 +34,7 @@ public class PersonController {
         }
     }
 
-    @GetMapping("/getById/")
+    @GetMapping("/getById")
     public ResponseEntity<?> getOnePersonById(@RequestParam(name = "id") Integer id) {
         try {
             return ResponseEntity.ok(personService.findById(id));
@@ -43,7 +43,7 @@ public class PersonController {
         }
     }
 
-    @GetMapping("/getByName/")
+    @GetMapping("/getByName")
     public ResponseEntity<?> getOnePersonByName(@RequestParam(name = "name") String name) {
         try {
             return ResponseEntity.ok(personService.findByName(name));
@@ -52,7 +52,7 @@ public class PersonController {
         }
     }
 
-    @DeleteMapping("/del/")
+    @DeleteMapping("/del")
     public ResponseEntity<?> deletePerson(@RequestParam Integer id) {
         try {
             return ResponseEntity.ok("Return code: " + personService.deleteById(id));
