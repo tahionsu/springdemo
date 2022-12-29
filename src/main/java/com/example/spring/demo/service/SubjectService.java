@@ -1,9 +1,7 @@
 package com.example.spring.demo.service;
 
 import com.example.spring.demo.entity.SubjectEntity;
-import com.example.spring.demo.entity.TeacherEntity;
 import com.example.spring.demo.model.Subject;
-import com.example.spring.demo.model.Teacher;
 import com.example.spring.demo.repository.SubjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
