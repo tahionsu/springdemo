@@ -37,7 +37,7 @@ public class TeacherController {
     }
 
     @GetMapping("/getById")
-    public ResponseEntity<?> getOneTeacherById(@RequestParam UUID id) {
+    public ResponseEntity<?> getTeacherById(@RequestParam UUID id) {
         try {
             return ResponseEntity.ok(teacherService.findById(id));
         } catch (Exception e) {
