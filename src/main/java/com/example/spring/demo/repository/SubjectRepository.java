@@ -5,7 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.UUID;
 
-public interface SubjectRepository extends CrudRepository<SubjectRepository, UUID> {
+public interface SubjectRepository extends CrudRepository<SubjectEntity, UUID> {
 
     SubjectEntity findBySubjectName(String subjectName);
 
