@@ -28,7 +28,7 @@ public class Schedule {
     private String auditory;
     private Date dateTime;
 
-    Schedule toModel(ScheduleEntity entity) {
+    public static Schedule toModel(ScheduleEntity entity) {
         Schedule schedule = new Schedule();
 
         schedule.setId(entity.getId());

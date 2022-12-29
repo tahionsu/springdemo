@@ -17,7 +17,7 @@ public class Subject {
     private UUID id;
     private String subjectName;
 
-    Subject toModel(SubjectEntity entity) {
+    public static Subject toModel(SubjectEntity entity) {
         Subject subject = new Subject();
 
         subject.setId(entity.getId());

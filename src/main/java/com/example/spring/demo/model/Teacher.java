@@ -19,7 +19,7 @@ public class Teacher {
     private String lastName;
     private String position;
 
-    Teacher toModel(TeacherEntity entity) {
+    public static Teacher toModel(TeacherEntity entity) {
         Teacher teacher = new Teacher();
 
         teacher.setId(entity.getId());
